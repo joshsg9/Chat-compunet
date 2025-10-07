@@ -1,12 +1,74 @@
-<div class="chat-container">
-  <h2>Chat - {{ roomId }}</h2>
-
-  <div class="messages">
-    <div *ngFor="let msg of messages">
-      <strong>{{ msg.user }}:</strong> {{ msg.message }}
+<div class="chat-window">
+  <div class="top-menu">
+    <div class="buttons">
+      <div class="button close"></div>
+      <div class="button minimize"></div>
+      <div class="button maximize"></div>
+    </div>
+    <div class="title">
+      Chat - {{ roomId }}
     </div>
   </div>
 
-  <input [(ngModel)]="message" placeholder="Escribe tu mensaje..." />
-  <button (click)="sendMessage()">Enviar</button>
+  <div class="messages">
+    <div
+  *ngFor="let msg of messages"
+  class="message"
+  [ngClass]="{ right: msg.user === username, left: msg.user !== username }"
+>
+  <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(msg.user) }">
+    {{ msg.user[0] | uppercase }}
+  </div>
+  <div class="text-wrapper">
+    <div class="text">{{ msg.message }}</div>
+  </div>
+</div>
+
+
+  <div class="bottom-wrapper">
+    <input
+      [(ngModel)]="message"
+      class="message-input"
+      placeholder="Escribe un mensaje..."
+      (keyup.enter)="sendMessage()"
+    />
+    <button class="send-button" (click)="sendMessage()">Enviar</button>
+  </div>
+</div>
+<div class="chat-window">
+  <div class="top-menu">
+    <div class="buttons">
+      <div class="button close"></div>
+      <div class="button minimize"></div>
+      <div class="button maximize"></div>
+    </div>
+    <div class="title">
+      Chat - {{ roomId }}
+    </div>
+  </div>
+
+  <div class="messages">
+    <div
+  *ngFor="let msg of messages"
+  class="message"
+  [ngClass]="{ right: msg.user === username, left: msg.user !== username }"
+>
+  <div class="avatar" [ngStyle]="{ 'background-color': getAvatarColor(msg.user) }">
+    {{ msg.user[0] | uppercase }}
+  </div>
+  <div class="text-wrapper">
+    <div class="text">{{ msg.message }}</div>
+  </div>
+</div>
+
+
+  <div class="bottom-wrapper">
+    <input
+      [(ngModel)]="message"
+      class="message-input"
+      placeholder="Escribe un mensaje..."
+      (keyup.enter)="sendMessage()"
+    />
+    <button class="send-button" (click)="sendMessage()">Enviar</button>
+  </div>
 </div>
